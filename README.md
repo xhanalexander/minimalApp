@@ -24,3 +24,11 @@ flutter cd minimalapp
 ```
 flutter run
 ```
+### Screenshots
+
+|   |   |
+|---|---|
+|![](lib/assets/images/home_view.png) | ![](lib/assets/images/add_view.png)
+| list view  | add form view  |
+|![](lib/assets/images/edit_view.png) | ![](lib/assets/images/search_view.png)
+| edit view | search id view
