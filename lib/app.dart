@@ -19,11 +19,11 @@ class MyApp extends StatelessWidget {
           '/': (context) => const HomeView(),
         },
         theme: ThemeData(
-          colorScheme: const ColorScheme.dark(
+          /* colorScheme: const ColorScheme.dark(
             primary: Colors.purple,
             secondary: Colors.purple,
             surface: Colors.purple,
-          ),
+          ), */
           useMaterial3: true,
         ),
       ),
