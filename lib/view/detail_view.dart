@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:minimalapp/components/cards.dart';
 import 'package:minimalapp/components/loadings.dart';
+import 'package:minimalapp/view/form_view.dart';
 import 'package:minimalapp/view_models/json_view_models.dart';
 import 'package:provider/provider.dart';
 
@@ -74,7 +76,7 @@ class _DetailPagesState extends State<DetailPages> {
                             verticalOffset: 50.0,
                             child: FadeInAnimation(
                               child: CustomCards(
-                                titleTextName: req.searchData.title![widget.ids],
+                                titleTextName: req.searchData.title!,
                                 onTaps: () {},
                               ),
                             ),
@@ -115,7 +117,7 @@ class _DetailPagesState extends State<DetailPages> {
                             child: FadeInAnimation(
                               child: CustomCards(
                                 heights: 150,
-                                titleTextName: req.searchData.body![widget.ids],
+                                titleTextName: req.searchData.body!,
                                 onTaps: () {},
                               ),
                             ),
@@ -125,10 +127,38 @@ class _DetailPagesState extends State<DetailPages> {
                     ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.red,
-        onPressed: () => onDelete(),
-        child: const Icon(Icons.delete, color: Colors.white),
+      floatingActionButton: SpeedDial(
+        animatedIcon: AnimatedIcons.menu_close,
+        animatedIconTheme: const IconThemeData(size: 22),
+        backgroundColor: Colors.white,
+        children: [
+          SpeedDialChild(
+            child: const Icon(Icons.edit),
+            backgroundColor: Colors.white,
+            label: 'Edit',
+            labelStyle: const TextStyle(fontSize: 18.0),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditFormPages(
+                    ids: widget.ids,
+                    userId: req.searchData.userId!,
+                    title: req.searchData.title!,
+                    body: req.searchData.body!,
+                  )
+                ),
+              );
+            },
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.delete, color: Colors.red),
+            backgroundColor: Colors.white,
+            label: 'Delete',
+            labelStyle: const TextStyle(fontSize: 18.0),
+            onTap: () => onDelete(),
+          ),
+        ],
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minimalapp/view/detail_view.dart';
 import 'package:provider/provider.dart';
 import 'package:minimalapp/components/cards.dart';
 import 'package:minimalapp/components/loadings.dart';
@@ -50,6 +51,20 @@ class _SearchPagesState extends State<SearchPages> {
             ),
           ),
           const SizedBox(height: 10),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Center(
+              child: Text(
+                'Search of result : ${req.searchData.id}',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
       
           // ---------------------------------- Get Data by ID ---------------------------------- //
           req.status == Status.loading
@@ -80,7 +95,16 @@ class _SearchPagesState extends State<SearchPages> {
                             child: FadeInAnimation(
                               child: CustomCards(
                                 titleTextName: req.searchData.title!,
-                                onTaps: () {},
+                                onTaps: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailPages(
+                                        ids: req.searchData.id!,
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                           ),
@@ -121,7 +145,16 @@ class _SearchPagesState extends State<SearchPages> {
                               child: CustomCards(
                                 heights: 150,
                                 titleTextName: req.searchData.body!,
-                                onTaps: () {},
+                                onTaps: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailPages(
+                                        ids: req.searchData.id!,
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                           ),

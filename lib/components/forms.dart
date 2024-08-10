@@ -104,7 +104,7 @@ class LabelsForms extends StatelessWidget {
     return Text(
       labelName,
       style: const TextStyle(
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: FontWeight.bold,
       ),
     );

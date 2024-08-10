@@ -21,6 +21,7 @@ class JsonApi {
     try {
       final response = await http.get(Uri.parse('${Constant.baseUrl}posts/$ids'));
       final Map<String, dynamic> map = json.decode(response.body);
+      debugPrint('> Data: $map');
       return DataModels.fromJson(map);
     } catch (e) {
       debugPrint('Error: $e');
@@ -67,14 +68,19 @@ class JsonApi {
     }
   }
 
-  Future<DataModels> updateData({required DataModels datas}) async {
+  Future<DataModels> putData({required DataModels datas}) async {
     try {
-      final response = await http.put(
+      final response = await http.patch(
         Uri.parse('${Constant.baseUrl}posts/${datas.id}'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(datas.toJson()),
+        body: jsonEncode({
+          'userId': datas.userId,
+          'id': datas.id,
+          'title': datas.title,
+          'body': datas.body,
+        }),
       );
       final Map<String, dynamic> map = json.decode(response.body);
       return DataModels.fromJson(map);

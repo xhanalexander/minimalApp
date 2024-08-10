@@ -10,8 +10,9 @@ enum Status {
 
 class JsonViewModels with ChangeNotifier {
   List<DataModels> _getData = [];
-  List<DataModels> _getDataID = [];
   DataModels _getSearchData = DataModels();
+  DataModels _getDetailsData = DataModels();
+  DataModels _updateData = DataModels();
 
   int currentPage = 1;
   final int limit = 10;
@@ -20,8 +21,9 @@ class JsonViewModels with ChangeNotifier {
   Status get status => _status;
 
   List<DataModels> get data => _getData;
-  List<DataModels> get dataID => _getDataID;
   DataModels get searchData => _getSearchData;
+  DataModels get detailsData => _getDetailsData;
+  DataModels get updateData => _updateData;
   Status _status = Status.loading;
 
   deleteData({required int id}) async {
@@ -70,21 +72,6 @@ class JsonViewModels with ChangeNotifier {
     }
   }
 
-  /* getQueryData({required String query}) async {
-    try {
-      _status = Status.loading;
-      notifyListeners();
-      
-      _getData = await JsonApi().searchData(query: query);
-      _status = Status.success;
-      notifyListeners();
-
-    } catch (e) {
-      debugPrint('Error: $e');
-      throw Exception('Error: $e');
-    }
-  } */
-
   postData({required DataModels data}) async {
     try {
       _status = Status.loading;
@@ -105,7 +92,7 @@ class JsonViewModels with ChangeNotifier {
       _status = Status.loading;
       notifyListeners();
       
-      await JsonApi().updateData(datas: data);
+      _updateData = await JsonApi().putData(datas: data);
       _status = Status.success;
       notifyListeners();
 

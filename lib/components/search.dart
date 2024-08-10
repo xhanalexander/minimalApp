@@ -71,8 +71,8 @@ class SearchBarButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.all(0),
-        backgroundColor: Colors.grey[700],
-        elevation: 0,
+        backgroundColor: Colors.white,
+        elevation: 2,
       ),
       onPressed: onClicked,
       child: Row(
@@ -80,14 +80,14 @@ class SearchBarButton extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.search_rounded, color: Colors.white),
+            icon: const Icon(Icons.search_rounded, color: Colors.black),
           ),
           const Expanded(
             child: Text(
               "Search ID's...",
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
           ),
